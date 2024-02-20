@@ -15,12 +15,17 @@ DOTNET = /usr/bin/dotnet
 
 # pkg
 NET_GZ = $(DISTR)/SDK/dotnet-runtime-$(NET_VER)-linux-x64.tar.gz
-NET_DEB = $(DISTR)/SDK/packages-microsoft-prod.deb
+NET_MS  = packages-microsoft-prod.deb
+NET_DEB = $(DISTR)/SDK/$(NET_MS)
+NET_URL = https://packages.microsoft.com/config/debian/11
+
+# src
+F += $(wildcard lib/*.f*)
 
 # all
 .PHONY: all
-all: $(DOTNET)
-	$^ --version
+all: $(DOTNET) $(F)
+	$(DOTNET) fsi $(F)
 
 # install
 .PHONY: install update
@@ -33,7 +38,7 @@ update:
 $(DOTNET): $(NET_DEB)
 	sudo dpkg -i $< && sudo touch $@
 $(NET_DEB):
-	$(CURL) $@ https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb
+	$(CURL) $@ $(NET_URL)/$(NET_MS)
 
 # curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin \
 # 	--version latest --verbose --version "$(NET_VER)" \

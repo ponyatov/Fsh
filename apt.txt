@@ -1,4 +1,4 @@
 git make curl
 code meld doxygen clang-format
 g++ build-essential
-dotnet-runtime-8.0
+dotnet-runtime-8.0 dotnet-sdk-8.0
