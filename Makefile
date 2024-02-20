@@ -2,7 +2,7 @@
 MODULE  = $(notdir $(CURDIR))
 
 # version
-NET_VER = 8.0.201
+NET_VER = 8.0.200
 
 # dir
 CWD   = $(CURDIR)
