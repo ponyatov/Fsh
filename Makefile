@@ -7,7 +7,7 @@ NET_VER = 8.0.200
 # dir
 CWD   = $(CURDIR)
 NET   = $(HOME)/.dotnet
-DISTR = $(HOME)/distr/shared
+DISTR = $(HOME)/distr
 
 # tool
 CURL   = curl -L -o
@@ -21,7 +21,8 @@ NET_URL = https://packages.microsoft.com/config/debian/11
 
 # src
 F += $(wildcard lib/*.f*)
-
+C += $(wildcard src/*.c*)
+H += $(wildcard inc/*.h*)
 
 # all
 .PHONY: all
@@ -39,8 +40,8 @@ tmp/format_f: $(F)
 .PHONY: install update
 install: $(DOTNET)
 	$(MAKE) update
-	$(DOTNET) new  tool-manifest
-	$(DOTNET) tool install fantomas
+# $(DOTNET) new  tool-manifest
+# $(DOTNET) tool install fantomas
 update:
 	sudo apt update
 	sudo apt install -uy `cat apt.txt`
