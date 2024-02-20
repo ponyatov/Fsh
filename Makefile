@@ -22,15 +22,25 @@ NET_URL = https://packages.microsoft.com/config/debian/11
 # src
 F += $(wildcard lib/*.f*)
 
+
 # all
 .PHONY: all
+FSX = $(addprefix --load:, $(F))
 all: $(DOTNET) $(F)
-	$(DOTNET) fsi $(F)
+	$(DOTNET) fsi --consolecolors+ $(FSX)
+
+# format
+.PHONY: format
+format: tmp/format_f
+tmp/format_f: $(F)
+	$(DOTNET) fantomas --force $? && touch $@
 
 # install
 .PHONY: install update
 install: $(DOTNET)
 	$(MAKE) update
+	$(DOTNET) new  tool-manifest
+	$(DOTNET) tool install fantomas
 update:
 	sudo apt update
 	sudo apt install -uy `cat apt.txt`
