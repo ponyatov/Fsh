@@ -11,7 +11,7 @@ DISTR = $(HOME)/distr/shared
 
 # tool
 CURL   = curl -L -o
-DOTNET = $(NET)/dotnet
+DOTNET = /usr/bin/dotnet
 
 # pkg
 NET_GZ = $(DISTR)/SDK/dotnet-runtime-$(NET_VER)-linux-x64.tar.gz
@@ -19,7 +19,8 @@ NET_DEB = $(DISTR)/SDK/packages-microsoft-prod.deb
 
 # all
 .PHONY: all
-all: install
+all: $(DOTNET)
+	$^ --version
 
 # install
 .PHONY: install update
@@ -30,7 +31,7 @@ update:
 	sudo apt install -uy `cat apt.txt`
 
 $(DOTNET): $(NET_DEB)
-	sudo dpkg -i $<
+	sudo dpkg -i $< && sudo touch $@
 $(NET_DEB):
 	$(CURL) $@ https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb
 
