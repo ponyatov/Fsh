@@ -36,9 +36,17 @@ format: tmp/format_f
 tmp/format_f: $(F)
 	$(DOTNET) fantomas --force $? && touch $@
 
+# doc
+.PHONY: doc
+doc: \
+	doc/Chris_Smith_Programming_F.pdf
+
+doc/Chris_Smith_Programming_F.pdf:
+	$(CURL) $@ https://books-library.net/files/books-library.net-10251730Wq5A3.pdf
+
 # install
 .PHONY: install update
-install: $(DOTNET)
+install: $(DOTNET) doc
 	$(MAKE) update
 # $(DOTNET) new  tool-manifest
 # $(DOTNET) tool install fantomas
