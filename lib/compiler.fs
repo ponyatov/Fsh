@@ -39,9 +39,31 @@ type expr =
     // variable
     | Var of string
 
-Var "X" // x
-Prim("+", CstI 3, Var "a") // 3 + a
+let x = Var "X" // x
+let add3a = Prim("+", CstI 3, Var "a") // 3 + a
 
 // environment
 let env = [ ("a", 3); ("c", 78); ("baf", 666); ("b", 111) ]
-let empty_env = []
+let emptyenv = []
+
+// variable lookup
+let rec lookup env x =
+    match env with
+    | [] -> failwith (x + " not found")
+    | (key, value) :: rest -> if x = key then value else lookup rest x
+
+lookup env "x"
+lookup env "a"
+
+// expr evaluation function
+let rec eval (e: expr) (env: (string * int) list) : int =
+    match e with
+    | CstI i -> i
+    | Var x -> lookup env x
+    | Prim("+", e1, e2) -> eval e1 env + eval e2 env
+    | Prim("-", e1, e2) -> eval e1 env - eval e2 env
+    | Prim("*", e1, e2) -> eval e1 env * eval e2 env
+    | Prim _ -> failwith "unknown primitive"
+
+eval x env // not found
+eval add3a env // 6
