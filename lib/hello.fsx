@@ -26,3 +26,5 @@ annotated <- 456
 (fun () -> 123)
 
 [| 1; 3; 2; 7; 6; 3; 1 |] |> Seq.sort |> Seq.map (fun x -> 1. / float (x))
+
+let add x y = x + y
