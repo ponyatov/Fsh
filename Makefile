@@ -24,7 +24,7 @@ F += $(wildcard lib/*.f*)
 C += $(wildcard src/*.c*)
 H += $(wildcard inc/*.h*)
 
-F = lib/Program.fs lib/Object.fs
+F = lib/Main.fs lib/Program.fs lib/Object.fs
 
 # all
 .PHONY: all

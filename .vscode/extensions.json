@@ -21,5 +21,7 @@
         // "basdp.language-gas-x86",
         // C#
         "ionide.ionide-fsharp",
+        "jmrog.vscode-nuget-package-manager",
+        "tintoy.msbuild-project-tools",
     ]
 }

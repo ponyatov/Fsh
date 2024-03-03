@@ -8,6 +8,7 @@
   <ItemGroup>
     <Compile Include="lib/Program.fs" />
     <Compile Include="lib/Object.fs" />
+    <Compile Include="lib/Main.fs" />
   </ItemGroup>
 
 </Project>
