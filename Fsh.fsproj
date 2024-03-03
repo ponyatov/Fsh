@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Compile Include="lib/Program.fs" />
+    <Compile Include="lib/Object.fs" />
   </ItemGroup>
 
 </Project>
