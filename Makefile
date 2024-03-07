@@ -32,6 +32,10 @@ FSX = $(addprefix --load:, $(F))
 all: $(DOTNET) $(F)
 	$(DOTNET) fsi --consolecolors+ $(FSX)
 
+.PHONY: hello
+hello: $(MODULE).fsproj
+	dotnet build $< /t:$@
+
 # format
 .PHONY: format
 format: tmp/format_f

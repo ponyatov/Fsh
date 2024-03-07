@@ -27,3 +27,9 @@ isInt "123.45" |> ignore
 isInt "123" |> ignore
 
 printfn "[%s]" (sprintf "some")
+
+let add x y = x + y
+
+let inc  = add +1
+let dec  = add -1
+
