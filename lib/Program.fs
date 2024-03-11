@@ -28,8 +28,20 @@ isInt "123" |> ignore
 
 printfn "[%s]" (sprintf "some")
 
+
 let add x y = x + y
 
-let inc  = add +1
-let dec  = add -1
+let inc = add +1
 
+let dec = add -1
+
+//  123 |> dec |> dec |> dec
+
+let generatePowerOfFunc baseValue = (fun exponent -> baseValue ** exponent)
+
+let powerOfTwo = generatePowerOfFunc 2.0
+
+let rec factorial x =
+    if x <= 1 then 1 else x * factorial (x - 1)
+
+let rec (!) x = if x <= 1 then 1 else x * !(x - 1)
