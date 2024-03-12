@@ -1,18 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <Target Name="hello">
-        <Message text="Hello Build"/>
-    </Target>
-
+<Project Sdk="Microsoft.NET.Sdk">
+  <Target Name="hello">
+    <Message text="Hello Build" />
+  </Target>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <Compile Include="lib/Program.fs" />
     <Compile Include="lib/Object.fs" />
+    <Compile Include="lib/Program.fs" />
     <Compile Include="lib/Main.fs" />
   </ItemGroup>
-
 </Project>

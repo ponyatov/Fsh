@@ -45,3 +45,30 @@ let rec factorial x =
     if x <= 1 then 1 else x * factorial (x - 1)
 
 let rec (!) x = if x <= 1 then 1 else x * !(x - 1)
+
+open System
+open System.IO
+
+Directory.GetFiles(".", "*.f*", SearchOption.AllDirectories)
+|> ignore
+
+let rec listLength l =
+    match l with
+    | [] -> 0
+    | [ _ ] -> 1
+    | [ _; _ ] -> 2
+    | [ _; _; _ ] -> 3
+    | hd :: tail -> 1 + listLength tail
+
+let xx y = 
+    match y with
+    | y -> printfn y
+
+/// масть карты
+type Suit =
+    | Heart
+    | Diamond
+    | Spade
+    | Club
+
+let suits = [ Heart; Diamond; Spade; Club ]
