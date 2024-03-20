@@ -1,11 +1,14 @@
 ﻿module Object
 
-type Object =
-    val value : string
-    new() = Object("")
-    new(v:string) = { value=v }
+type Object(value:string) =
+    let nest: Object list = []
     override this.ToString() =
-        "<object:" + this.value + ">"
+        let ret = new System.Text.StringBuilder()
+        ret.Append("<object:")
+        ret.Append(value)
+        ret.Append("> [")
+        for i in nest do ret.Append(i.ToString()+" ") |>ignore
+        ret.Append("]")
+        ret.ToString()
 
-new Object("sa")
-new Object()
+Object "123"
