@@ -49,8 +49,7 @@ let rec (!) x = if x <= 1 then 1 else x * !(x - 1)
 open System
 open System.IO
 
-Directory.GetFiles(".", "*.f*", SearchOption.AllDirectories)
-|> ignore
+Directory.GetFiles(".", "*.f*", SearchOption.AllDirectories) |> ignore
 
 let rec listLength l =
     match l with
@@ -60,7 +59,7 @@ let rec listLength l =
     | [ _; _; _ ] -> 3
     | hd :: tail -> 1 + listLength tail
 
-let xx y = 
+let xx y =
     match y with
     | y -> printfn y
 
@@ -72,3 +71,20 @@ type Suit =
     | Club
 
 let suits = [ Heart; Diamond; Spade; Club ]
+
+// "Hello"B
+
+let same x = x
+let vovels = set [ 'a'; 'e'; 'i'; 'o'; 'u' ]
+
+/// <summary> pig latin </summary>
+/// https://youtu.be/E4LrQxElbZM?si=7mVMoN6lYtA6lZsL
+let pigLatin (s: string) : string =
+    let first = s.[0]
+
+    if vovels.Contains first then
+        s + "yay"
+    else
+        s.[1..] + string first + "ay"
+
+pigLatin "Igor" |> ignore
