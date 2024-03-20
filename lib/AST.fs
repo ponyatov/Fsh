@@ -9,7 +9,7 @@ type AST =
         match this with
         | Number -> "num:"
         | Symbol -> "sym:"
-        | Operator -> failwith "Not Implemented"
+        | Operator -> this.ToString()
 
 type Operator =
     | Add of AST * AST
@@ -17,3 +17,9 @@ type Operator =
     | Mul of AST * AST
     | Div of AST * AST
     | Assign of AST * AST
+
+// [<TestFixture>]
+// type TestClass() =
+// [<Test>]
+//     member this.hello() =
+//         Assert true

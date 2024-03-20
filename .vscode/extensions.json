@@ -19,9 +19,10 @@
         // LLVM
         // "rreverser.llvm",
         // "basdp.language-gas-x86",
-        // C#
+        // F#
         "ionide.ionide-fsharp",
         "jmrog.vscode-nuget-package-manager",
         "tintoy.msbuild-project-tools",
+        "formulahendry.dotnet-test-explorer",
     ]
 }
