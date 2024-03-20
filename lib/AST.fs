@@ -1,25 +1,36 @@
 module AST
 
 type AST =
-    | Number
-    | Symbol
+    | Number of n: int
+    | Symbol of s: string
     | Operator
 
     override this.ToString() =
         match this with
-        | Number -> "num:"
-        | Symbol -> "sym:"
+        | Number(n) -> "num:" + n.ToString()
+        | Symbol(s) -> "sym:" + s
         | Operator -> this.ToString()
 
 type Operator =
-    | Add of AST * AST
-    | Sub of AST * AST
-    | Mul of AST * AST
-    | Div of AST * AST
-    | Assign of AST * AST
+    | Add of x: AST * y: AST
+    | Sub of x: AST * y: AST
+    | Mul of x: AST * y: AST
+    | Div of x: AST * y: AST
+    | Assign of x: AST * y: AST
+
+    override this.ToString() =
+        match this with
+        | Add(x, y) -> x.ToString() + " + " + y.ToString()
+        | Sub(x, y) -> x.ToString() + " - " + y.ToString()
+        | Mul(x, y) -> x.ToString() + " * " + y.ToString()
+        | Div(x, y) -> x.ToString() + " / " + y.ToString()
+        | Assign(x, y) -> x.ToString() + " = " + y.ToString()
+
 
 // [<TestFixture>]
 // type TestClass() =
 // [<Test>]
 //     member this.hello() =
 //         Assert true
+
+"123.45" |> float |> int |> Number
