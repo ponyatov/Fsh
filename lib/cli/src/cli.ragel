@@ -1,0 +1,23 @@
+#include "os.hpp"
+#include "cli.hpp"
+
+%%machine cli;
+%%write  data;
+
+static int   cs  = 0;           ///< current state
+static int   act = 0;           ///< ???
+static char* eof = nullptr;     ///< end of file marker
+static char* ts  = nullptr;     ///< token start
+static char* te  = nullptr;     ///< token end
+
+void cli(char* p, char* pe) {
+    eof = pe; cs = act = 0; ts = te = nullptr;
+    %%write init;
+    %%write exec;
+}
+
+%%{
+    cli := |*
+        any     => { yyerror(strndup(ts,te-ts)); };
+    *|;
+}%%
