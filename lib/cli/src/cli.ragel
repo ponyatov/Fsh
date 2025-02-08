@@ -17,7 +17,22 @@ void cli(char* p, char* pe) {
 }
 
 %%{
+    comment = '#' [^\n]*;                   # comment
+    nl      = '\n';                         # new line
+    sp      = [ \r\t]+;                     # drop spaces
+
+    sign    = [+\-];                        # sign
+    num     = sign ? digit+ '.' digit+;     # floating point
+    dec     = sign ? digit+;                # decimal int
+
     cli := |*
+        comment => { };
+        nl+     => { yylineno += te-ts; /* count line */ };
+        sp      => { };
+
+        num     => { printf("\t\t%i: num:%f\n",yylineno,num(ts,te)); };
+        dec     => { printf("\t\t%i: int:%i\n",yylineno,dec(ts,te)); };
+
         any     => { yyerror(strndup(ts,te-ts)); };
     *|;
 }%%
