@@ -2,6 +2,11 @@
     "version": 6,
     "buildPresets": [
         {
+            "name"           :   "pillF103",
+            "configurePreset":   "pillF103",
+            "targets"        :  ["all","install"]
+        },
+        {
             "name"           :   "glibc",
             "configurePreset":   "glibc",
             "targets"        :  ["all","install"]
@@ -20,6 +25,27 @@
                 "CMAKE_COLOR_DIAGNOSTICS" : false,
                 "CMAKE_BUILD_TYPE"        : "Debug",
                 "CMAKE_VERBOSE_MAKEFILE"  : true
+            }
+        },
+        {
+            "name"          :  "cortexM",
+            "hidden"        :   true,
+            "inherits"      :  "common",
+            "toolchainFile" :  "${sourceDir}/cmake/arm-none-eabi.cmake",
+            "cacheVariables": {"OS":"bare","CMAKE_EXECUTABLE_SUFFIX":".elf"}
+        },
+        {
+            "name"          :  "cortexM3",
+            "hidden"        :   true,
+            "inherits"      :  "cortexM",
+            "cacheVariables": {"ARCH":"cortexM3"}
+        },
+        {
+            "name"          : "pillF103",
+            "inherits"      : "cortexM3",
+            "cacheVariables": {
+                "HW" :"pillF103",
+                "CPU":"stm32f103c8t", "SERIES": "STM32F1"
             }
         },
         {
